@@ -30,8 +30,8 @@ pprint.pprint(response_json)
 rates = [item['rate'] for item in response_json]
 dates = [item['exchangedate'] for item in response_json]
 
-
-plt.plot(dates, rates)
+plt.figure(figsize=(10, 5))
+plt.plot(dates, rates,)
 plt.grid()
 plt.suptitle('UAH to USD')
 plt.show()
