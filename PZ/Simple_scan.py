@@ -12,7 +12,7 @@ def scan_ports(ip, start_port, end_port):
 
 
 if __name__ == "__main__":
-    target_ip = input("Enter target IP: ")
+    target_ip = input("Enter target IP or domain: ")
     #start = int(input("Enter start port: "))
     #end = int(input("Enter end port: "))
 

@@ -11,5 +11,5 @@ def scan_ports(ip, start_port, end_port):
                 print(" < is open")
 
 if __name__ == "__main__":
-    target_ip = input("Enter target IP: ")
+    target_ip = input("Enter target IP or domain: ")
     scan_ports(target_ip, 1, 1000)
