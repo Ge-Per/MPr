@@ -1,6 +1,6 @@
 from scapy.all import *
 
-# SYN-сканирование
+
 def syn_scan(target, ports):
     print(f"SYN scan on {target} with ports {ports}")
     sport = RandShort()
@@ -22,7 +22,7 @@ def syn_scan(target, ports):
         else:
             print(f"{port} | Unanswered")
 
-# Xmas-сканирование
+
 def xmas_scan(target, ports):
     print(f"Xmas scan on {target} with ports {ports}")
     sport = RandShort()
