@@ -118,20 +118,25 @@ def handle_single_item(item_id):
             return jsonify(format_response(None, "Item not found")), 404
 
         data = request.get_json()
-        if "name" in data:
-            item["name"] = data["name"]
-        if "price" in data:
-            item["price"] = data["price"]
-        if "quantity" in data:
-            item["quantity"] = data["quantity"]
-        if "warehouse" in data:
-            item["warehouse"] = data["warehouse"]
 
+        # Create a mutable dictionary from the fetched item for modification
+        item_dict = dict(item)
+
+        if "name" in data:
+            item_dict["name"] = data["name"]
+        if "price" in data:
+            item_dict["price"] = data["price"]
+        if "quantity" in data:
+            item_dict["quantity"] = data["quantity"]
+        if "warehouse" in data:
+            item_dict["warehouse"] = data["warehouse"]
+
+        # Execute the update query with modified values
         conn.execute('''UPDATE catalog SET name = ?, price = ?, quantity = ?, warehouse = ? WHERE id = ?''',
-                     (item["name"], item["price"], item["quantity"], item["warehouse"], item_id))
+                     (item_dict["name"], item_dict["price"], item_dict["quantity"], item_dict["warehouse"], item_id))
         conn.commit()
         conn.close()
-        return jsonify(format_response(dict(item))), 200
+        return jsonify(format_response(item_dict)), 200
 
     elif request.method == 'DELETE':
         # Delete an item
